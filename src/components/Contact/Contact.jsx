@@ -1,8 +1,11 @@
 import { IoCall } from 'react-icons/io5';
 import css from './Contact.module.css';
 import { FaUser } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '../../redux/contactsSlice';
 
-const Contact = ({ contact: { name, number, id }, onDelete }) => {
+const Contact = ({ contact: { name, number, id } }) => {
+  const dispatch = useDispatch()
   return (
     <div>
       <p className={css.name}>
@@ -11,7 +14,7 @@ const Contact = ({ contact: { name, number, id }, onDelete }) => {
       <p>
         <IoCall size={12} /> {number}
       </p>
-      <button onClick={() => onDelete(id)} className={css.btnContact}>
+      <button onClick={() => dispatch(deleteContact(id))} className={css.btnContact}>
         Delete
       </button>
     </div>
